@@ -12,6 +12,7 @@ const options = {
   };
   
   export const fetchAPI = async (query) => {
+
     const {data} = await axios.get(`${URL}/${query}`, options)
     return data;
   }

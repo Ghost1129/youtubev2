@@ -3,13 +3,30 @@ import React from 'react'
 import styled from 'styled-components'
 import Logo from '../assets/logo.svg'
 import { SearchAlt} from '@styled-icons/boxicons-regular/SearchAlt'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
+    const [search, setSearch] = React.useState('')
+    const router = useRouter()
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(search){
+            router.push(`/search/${search}`)
+            setSearch('')
+        }
+    }
+
   return (
     <Nav>
-        <Image src={Logo} alt="logo" width={50} height={50} />
+        <a href="/">
+            <Image src={Logo} alt="logo" width={50} height={50}  />
+        </a>
         <Searchbar>
-            <SearchInput placeholder='Search'/>
+            <form onSubmit={handleSubmit}>
+            <SearchInput onSubmit={handleSubmit} onChange={(e)=>setSearch(e.target.value)} value={search} placeholder='Search'/>
+            </form>
+            
             <Searchlogo size="24"/>
         </Searchbar>
     </Nav>

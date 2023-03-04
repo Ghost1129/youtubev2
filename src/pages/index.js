@@ -4,11 +4,24 @@ import styled from 'styled-components'
 import Navbar from '@/components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Feed from '@/container/Feed'
+import { fetchAPI } from '@/utlis/fetchapi'
+import {useEffect, useState} from "react";
 
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export default function Home() {
+    const [videos, setVideos] = useState(null)
+    const [query, setQuery] = useState('New')
+
+    useEffect(() => {
+        fetchAPI(`search?part=snippet&q=${query}`)
+            .then(res => setVideos(res.items))
+            .catch(err => console.log(err))
+    }, [query])
+
+
   return (
     <>
       <Head>
@@ -19,15 +32,10 @@ export default function Home() {
       </Head>
       <main>
         <Navbar/>
-        <Sidebar/>
-        <Feed/>
+        <Sidebar query={query} setQuery={setQuery} />
+        <Feed videos={videos}/>
        
       </main>
     </>
   )
 }
-
-
-const Container = styled.div`
-
-`

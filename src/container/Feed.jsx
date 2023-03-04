@@ -1,23 +1,19 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import  Video  from '../components/Video'
-import { fetchAPI } from '@/utlis/fetchapi'
 
-const Feed = () => {
 
-    useEffect(() => {
-        fetchAPI('search?part=snippet&query=react')
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }, [])
+const Feed = ({videos}) => {
+    
+
   return (
     <Container>
         <Title>Recommended</Title>
         <VideoContainer>
-        <Video/>
-        <Video/>
-        <Video/>
-        <Video/>
+            {videos?.map((item)=> {
+                return <Video key={item.videoId} video={item}/>
+            })
+            }
         </VideoContainer>
         
 
@@ -35,6 +31,8 @@ const Container = styled.div`
     height: calc(100vh - 60px);
     background-color: black;
     padding: 5px;
+    overflow-y: scroll;
+    gap: 10px;
 
     
 
@@ -49,5 +47,14 @@ const Title = styled.h3`
 `
 const VideoContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+
+    @media screen and (min-width: 768px) 
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: 1024px){
+        grid-template-columns: repeat(4, 1fr);
+    }
 `

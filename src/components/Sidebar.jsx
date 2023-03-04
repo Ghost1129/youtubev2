@@ -1,90 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
 import {HomeAlt} from '@styled-icons/boxicons-regular/HomeAlt'
+import {ReactLogo} from '@styled-icons/boxicons-logos/ReactLogo'
 
-const Sidebar = () => {
+
+const categories = [
+    {
+        name: "Home",
+        icon: HomeAlt,
+    },
+    {
+        name: "React",
+        icon: ReactLogo
+    },
+    {
+        name: "Blue",
+        icon: HomeAlt,
+    },
+    {
+        name: "Something",
+        icon: ReactLogo
+    },
+
+
+]
+
+const Sidebar = ({query,setQuery}) => {
   return (
     <Container>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
-        <Categories>
-            <HomeIcon size="18"/>
-            <Text>Home</Text>
-        </Categories>
+        {categories.map((category) => (
+            <Categories key={category.name} onClick={()=>setQuery(category.name)} >
+                <HomeIcon size='18'>{category.icon}</HomeIcon>
+                <Text>{category.name}</Text>
+            </Categories>
+        ))}
     </Container>
   )
 }
