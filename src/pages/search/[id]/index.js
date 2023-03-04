@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import  Video  from '../../../components/Video'
 
-const index = () => {
+const Search = () => {
 
     const router = useRouter()
     const { id } = router.query
@@ -35,7 +35,7 @@ const index = () => {
   )
 }
 
-export default index
+export default Search
 
 
 const SearchContainer = styled.div`
