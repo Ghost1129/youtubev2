@@ -19,9 +19,9 @@ const Navbar = () => {
 
   return (
     <Nav>
-        <a href="/">
+        <Link href="/">
             <Image src={Logo} alt="logo" width={50} height={50}  />
-        </a>
+        </Link>
         <Searchbar>
             <form onSubmit={handleSubmit}>
             <SearchInput onSubmit={handleSubmit} onChange={(e)=>setSearch(e.target.value)} value={search} placeholder='Search'/>

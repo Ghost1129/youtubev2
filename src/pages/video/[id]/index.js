@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {fetchAPI} from "@/utlis/fetchapi";
@@ -13,8 +13,8 @@ import {CheckCircleFill}  from '@styled-icons/bootstrap/CheckCircleFill'
 const VideoDetail = () => {
     const router = useRouter()
     const {id} = router.query
-    const [video, setVideo] = React.useState(null)
-    const [relatedVideos, setRelatedVideos] = React.useState(null)
+    const [video, setVideo] = useState(null)
+    const [relatedVideos, setRelatedVideos] = useState(null)
 
     useEffect(() => {
         fetchAPI(`videos?part=snippet&id=${id}`)
