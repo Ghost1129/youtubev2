@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Navbar from '@/components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Feed from '@/container/Feed'
-import { fetchAPI } from '@/utlis/fetchapi'
 import {useEffect, useState} from "react";
 
 
@@ -15,11 +14,16 @@ export default function Home() {
     const [videos, setVideos] = useState(null)
     const [query, setQuery] = useState('New')
 
-    useEffect(() => {
-        fetchAPI(`search?part=snippet&q=${query}`)
-            .then(res => setVideos(res.items))
-            .catch(err => console.log(err))
-    }, [query])
+    // useEffect(() => {
+    //   getVideos()
+    // }, [])
+
+    // const getVideos = async () => {
+    //   const data = await fetch(YOUTUBE_VIDEOS_API)
+    //   const res = await data.json()
+    //   setVideos(res.items)
+    //   console.log(res.items)
+    // }
 
 
   return (
@@ -32,10 +36,21 @@ export default function Home() {
       </Head>
       <main>
         <Navbar/>
+        <Container>
         <Sidebar query={query} setQuery={setQuery} />
-        <Feed videos={videos}/>
+        <Feed/>
+        </Container>
+        
        
       </main>
     </>
   )
 }
+
+const Container = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    
+    `

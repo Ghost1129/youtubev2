@@ -4,18 +4,21 @@ import Image from "next/image";
 import {CheckCircleFill}  from '@styled-icons/bootstrap/CheckCircleFill'
 import Link from "next/link";
 
-const Video = ({video: { id: { videoId ,channelId }, snippet}}) => {
+const Video = ({video}) => {
+  console.log(video)
+  const {snippet,statistics} = video
+  const { channelTitle, title, thumbnails } = snippet;
 
   return (
     <Container>
-      {videoId?
+      {video?.id.kind==='youtube#video'||video?.kind==='youtube#video'?
           //!! If videoId is true, then render the following:
-          <VideoCard href={`/video/${videoId}`} >
-            <Image src={snippet?.thumbnails?.high?.url } width={300} height={240} alt={'Image'} />
-            <span>{snippet?.title}</span>
+          <VideoCard href={`/video/${video.id}`} >
+            <Image src={thumbnails?.medium?.url } width={320} height={200} alt={'Image'} style={{borderRadius:'20px'}} />
+            <span>{title}</span>
             <ChannelDetail>
-                <span>{snippet?.channelTitle}</span>
-                <CheckCircleFill size={12}/>
+                <span>{channelTitle}</span>
+                <CheckCircleFill size={10}/>
             </ChannelDetail>
           </VideoCard>
           :
@@ -36,10 +39,13 @@ export default Video
 
 const Container = styled.div`
   color: white;
-width: 300px;
-height: 340px;
+width: 320px;
+height: 300px;
+margin: 0 10px ;
 
-margin: 10px 0;
+
+
+/* margin: 10px; */
   
   
 `
@@ -49,8 +55,24 @@ const VideoCard = styled(Link)`
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  height: 100%;
+  
+  
+  &:hover{
+    box-shadow: 0 0 10px 0 rgba(116, 116, 116, 0.5);
+
+  }
+
+  >span {
+    
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+  }
 `
 
 const ChannelCard = styled.div`

@@ -1,41 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {fetchAPI} from "@/utlis/fetchapi";
+// import {fetchAPI} from "@/utlis/fetchapi";
 import ReactPlayer from 'react-player'
 import Navbar from "@/components/Navbar";
 import styled from "styled-components";
 import Video from "@/components/Video";
 import {CheckCircleFill}  from '@styled-icons/bootstrap/CheckCircleFill'
+import useFetchVideo from '@/utlis/hooks/useFetchVideo';
+import Sidebar from '@/components/Sidebar';
 
 
 
 const VideoDetail = () => {
     const router = useRouter()
     const {id} = router.query
-    const [video, setVideo] = useState(null)
-    const [relatedVideos, setRelatedVideos] = useState(null)
 
-    useEffect(() => {
-        fetchAPI(`videos?part=snippet&id=${id}`)
-            .then(res => setVideo(res?.items[0]))
-
-        fetchAPI(`search?part=snippet&relatedToVideoId=${id}&type=video}`)
-            .then(res => setRelatedVideos(res.items))
-
-    }, [id])
+    const {response,related, error, isLoading} = useFetchVideo(id)
+    
+    
 
   
 
 
 
-    if (!video?.snippet) return <div>Loading...</div>
-    const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = video;
+    if (!response[0]?.snippet) return <div>Loading...</div>
+    const { snippet: { title, channelId, channelTitle }, statistics: { viewCount, likeCount } } = response[0];
 
     return (
         <>
             <Navbar/>
             <Container>
+            <Sidebar />
+            <Container2>
             <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} width='100%' height='500px' className="Player" controls/>
                 <VideoAbout>
                     <h1>{title}</h1>
@@ -47,11 +44,14 @@ const VideoDetail = () => {
                     </ChannelDetail>
                 </VideoAbout>
                 <RelatedVideos>
-                    {relatedVideos?.map((item) => {
-                        return <Video key={item.videoId} video={item}/>
+                    {related?.map((item) => {
+                        return <Video key={item.id} video={item}/>
                     })}
                 </RelatedVideos>
-            </Container>
+            </Container2>
+        </Container>
+            <Navbar/>
+            
         </>
     );
 };
@@ -60,10 +60,20 @@ export default VideoDetail;
 
 
 const Container = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    
+    
+    `
+
+const Container2 = styled.div`
     margin-top: 60px;
     width: 100%;
     background-color: black;
     color: white;
+    overflow-y: scroll;
   
   
   
@@ -75,7 +85,7 @@ const VideoAbout = styled.div`
     padding: 0 20px;
     margin-top: 20px;
     h1{
-        font-size: 40px;
+        font-size: 24px;
         font-weight: 600;
         margin-bottom: 10px;
 
@@ -86,6 +96,7 @@ const VideoAbout = styled.div`
 const ChannelDetail = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
     span{
         margin-right: 10px;
         font-size: 14px;
@@ -94,16 +105,11 @@ const ChannelDetail = styled.div`
 `
 
 const RelatedVideos = styled.div`
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    
 
-    @media screen and (min-width: 768px) 
-    {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media screen and (min-width: 1024px){
-        grid-template-columns: repeat(4, 1fr);
-    }
+   
 `

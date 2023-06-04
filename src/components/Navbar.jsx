@@ -2,13 +2,17 @@ import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
 import Logo from '../assets/logo.svg'
+import {Menu} from '@styled-icons/boxicons-regular/Menu'
 import { SearchAlt} from '@styled-icons/boxicons-regular/SearchAlt'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useDispatch,useSelector } from 'react-redux'
+import { selectIsMenuOpen, setMenuOpen } from '@/utlis/Slices/appSlice'
 
 const Navbar = () => {
     const [search, setSearch] = React.useState('')
     const router = useRouter()
+    const dispatch = useDispatch()
     const handleSubmit = (e) => {
         e.preventDefault()
         if(search){
@@ -16,12 +20,19 @@ const Navbar = () => {
             setSearch('')
         }
     }
+    const toggleMenu = () => {
+        dispatch(setMenuOpen())
+    }
 
   return (
     <Nav>
+        <NavLeft>
+        <MenuIcon size="32" onClick={toggleMenu}/>
         <Link href="/">
             <Image src={Logo} alt="logo" width={50} height={50}  />
         </Link>
+        </NavLeft>
+        
         <Searchbar>
             <form onSubmit={handleSubmit}>
             <SearchInput onSubmit={handleSubmit} onChange={(e)=>setSearch(e.target.value)} value={search} placeholder='Search'/>
@@ -48,6 +59,13 @@ height: 60px;
 padding: 0 10px;
 background-color: #fffcea;
 
+`
+const NavLeft = styled.div`
+display: flex;
+align-items: center;
+`
+const MenuIcon = styled(Menu)`
+cursor: pointer;
 `
 const Searchbar = styled.div`
 display: flex;
