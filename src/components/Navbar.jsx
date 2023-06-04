@@ -43,7 +43,7 @@ const Navbar = () => {
     const fetchSuggestions = async () => {
 
 
-        const URL = `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=`+search;
+        const URL = `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=`+search;
         const response = await fetch(URL);
         const data = await response.json();
         setSuggestions(data[1]);
@@ -68,7 +68,7 @@ const Navbar = () => {
             
             <SearchInput onFocus={()=>setShowSuggestions(true)} onBlur={()=>setShowSuggestions(false)}  onChange={(e)=>setSearch(e.target.value)} value={search} placeholder='Search'/>
             <Searchlogo size="24"/>
-            {showSuggestions && <SearchResult>
+            {showSuggestions && suggestions && <SearchResult>
                 <ul>
                     {suggestions?.map((suggestion,index) => (
                         <li key={index}>{suggestion}</li>
