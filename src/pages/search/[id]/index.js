@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-import { fetchAPI } from '@/utlis/fetchapi'
+
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
@@ -12,11 +12,7 @@ const Search = () => {
     const { id } = router.query
     const [videos, setVideos] = React.useState(null)
     
-    useEffect(() => {
-        fetchAPI(`search?part=snippet&q=${id}`)
-            .then(res => setVideos(res?.items))
-
-    }, [id])
+    
   return (
     <>
     <Navbar/>
