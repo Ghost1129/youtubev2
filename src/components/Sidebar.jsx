@@ -92,7 +92,7 @@ const HomeIcon = styled(HomeAlt)`
 `
 const Text = styled.div`
     text-align: center;
-    display: none;
+    /* display: none; */
 
     @media screen and (min-width: 768px) {
         display: block;
