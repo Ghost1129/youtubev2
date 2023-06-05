@@ -73,6 +73,7 @@ export default Commentss
 const CommentsContainer = styled.div`
     margin: 1rem;
     padding: 0.6rem;
+    
 
     h4 {
         margin-bottom: 1rem;

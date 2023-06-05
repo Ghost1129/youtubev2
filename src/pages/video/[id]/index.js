@@ -10,6 +10,7 @@ import {CheckCircleFill}  from '@styled-icons/bootstrap/CheckCircleFill'
 import useFetchVideo from '@/utlis/hooks/useFetchVideo';
 import Sidebar from '@/components/Sidebar';
 import Commentss from '@/components/Comments';
+import Livechat from '@/components/Livechat';
 
 
 
@@ -50,8 +51,13 @@ const VideoDetail = () => {
             <Container>
             <Sidebar />
             <Container2>
-            <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} width='100%' height='400px' className="Player" controls/>
-                <VideoAbout>
+                <VideoContainer>
+                    <UpperContainer>
+                        <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} className='react-player' width='100%' height='100%' controls/>
+                    </UpperContainer>
+                    <Livechat/>
+                </VideoContainer>
+                    <VideoAbout>
                     <h1>{title}</h1>
                     <ChannelDetail>
                         <span>{channelTitle}</span>
@@ -90,6 +96,36 @@ const Container2 = styled.div`
   
   
   
+`
+const VideoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 100%; */
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+    }
+
+`
+
+const UpperContainer = styled.div`
+position: relative;
+padding-top: 56.25%;
+background-color: red;
+/* width:60%; */
+/* height: 80%; */
+@media screen and (min-width: 768px)  {
+    width: 100%;
+    
+}
+
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 `
 
 const VideoAbout = styled.div`
