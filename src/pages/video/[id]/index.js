@@ -112,7 +112,7 @@ const VideoContainer = styled.div`
 const UpperContainer = styled.div`
 position: relative;
 padding-top: 56.25%;
-background-color: red;
+/* background-color: red; */
 /* width:60%; */
 /* height: 80%; */
 @media screen and (min-width: 768px)  {

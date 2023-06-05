@@ -3,29 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Commentss = ({comments}) => {
-    // console.log(comments)
-
-
-    // const comments = [
-    //     {
-    //         id: 1,
-    //         name: 'John Doe',
-    //         comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-    //         replies:[{
-    //             id: 1,
-    //             name: 'John Doe',
-    //             comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-    //             replies:[{
-    //                 id: 1,
-    //                 name: 'John Doe',
-    //                 comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-    //             }]
-    //         }]
-    //     }
-    // ]
 
     const Comment = ({data}) => {
-        // console.log(data)
+        
         return<>
             <CommentData className="comment" >
                 <Avatar>
@@ -40,8 +20,7 @@ const Commentss = ({comments}) => {
     }
 
     const CommentList = ({comments}) => {
-        console.log(comments, 'commentsmain')
-        
+
         return comments?.map((comment) => (
             <CommentsList key={comment.id}>
                 {comment.snippet?.topLevelComment?.snippet? <Comment data={comment.snippet.topLevelComment.snippet} />:<Comment data={comment.snippet}/> }
@@ -74,6 +53,7 @@ const CommentsContainer = styled.div`
     margin: 1rem;
     padding: 0.6rem;
     
+    
 
     h4 {
         margin-bottom: 1rem;
@@ -104,8 +84,8 @@ margin-left: 2rem;
 `
 
 const Avatar = styled.div`
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #ccc;
     position: relative;
@@ -121,5 +101,6 @@ const CommentName = styled.span`
 
 const CommentText = styled.span`
     font-size: 0.8rem;
+    max-width: 500px;
     
 `

@@ -9,7 +9,7 @@ import { selectIsMenuOpen } from '@/utlis/Slices/appSlice'
 
 const categories = [
     {
-        name: "Home",
+        name: "Popular",
         icon: HomeAlt,
     },
     {
@@ -21,7 +21,7 @@ const categories = [
         icon: HomeAlt,
     },
     {
-        name: "Something",
+        name: "Live",
         icon: ReactLogo
     },
 
@@ -37,7 +37,7 @@ const Sidebar = ({query,setQuery}) => {
     <Container>
         {categories.map((category) => (
             <Categories key={category.name} onClick={()=>setQuery(category.name)} >
-                <HomeIcon size='18'>{category.icon}</HomeIcon>
+                <HomeIcon size='16'>{category.icon}</HomeIcon>
                 <Text>{category.name}</Text>
             </Categories>
         ))}
@@ -53,7 +53,7 @@ const Container = styled.div`
     margin-top: 60px;
     top: 60px;
     left: 0;
-    width: 140px;
+    width: 160px;
     padding: 10px 10px;
     border-right: 1px solid #686868;
     
