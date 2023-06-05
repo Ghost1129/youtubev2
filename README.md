@@ -1,38 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Installation
+To get started with the clone, you first need to install Node.js and npm. Once that is done, clone or download the repository from Github and navigate to the root directory in your terminal.
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Next, run the following command to install the project dependencies:
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Running the project
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Once the dependencies have been installed, you can start the project using the following command:
+```
+npm run dev
+```
+The project will be available at http://localhost:3000/ on your browser.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+	1.	Home page
+The home page of the YouTube clone displays a list of popular videos, recommended videos and current trending videos. Users can click on any of these videos to watch them. The clone uses ReactPlayer to play the videos.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+	2.	Search functionality
+The search bar in the YouTube clone allows users to search for videos by typing in keywords. The clone uses YouTube’s live API to return search results. Clicking on any of the search results will take the user to the video page.
 
-## Learn More
+	3.	Video page
+The video page displays the selected video, along with a list of related videos. Users can like or dislike videos, add them to their watchlist and also share them on social media platforms. The clone uses Styled Components for the user interface.
 
-To learn more about Next.js, take a look at the following resources:
+# Integration with other APIs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The clone has been built using YouTube’s live API to return search results. Developers can further integrate the clone with other APIs to add more functionality and customization to the platform.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Scalability
+The YouTube clone has been built with scalability in mind. As the number of users and videos on the platform increases, the clone can be easily scaled up to handle the traffic and user demands.
 
-## Deploy on Vercel
+# Community
+The YouTube clone has a vibrant community of developers who are always ready to offer help and support to other users. The community is available on GitHub and other social media platforms where users can share their ideas, feedback, and suggestions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Conclusion
+The YouTube clone built using Next.js, Styled Components, live API, and ReactPlayer is an excellent solution for those looking to build a video-sharing platform like YouTube. The clone provides all the essential features of YouTube and can be modified to suit specific customization and branding needs. With its scalability, security, and vibrant community, the YouTube clone is a perfect choice for developers looking to create a video-sharing platform for their business or personal use.
