@@ -20,10 +20,10 @@ Features
 The home page of the YouTube clone displays a list of popular videos, recommended videos and current trending videos. Users can click on any of these videos to watch them. The clone uses ReactPlayer to play the videos.
 
 	2.	Search functionality
-The search bar in the YouTube clone allows users to search for videos by typing in keywords. The clone uses YouTube’s live API to return search results. Clicking on any of the search results will take the user to the video page.
+The search bar in the YouTube clone allows users to search for videos by typing in keywords. The clone uses YouTube’s live API to return search results. 
 
 	3.	Video page
-The video page displays the selected video, along with a list of related videos. Users can like or dislike videos, add them to their watchlist and also share them on social media platforms. The clone uses Styled Components for the user interface.
+The video page displays the selected video, along with a list of related videos. Users can see live comments and also implemented live chat The clone uses Styled Components for the user interface.
 
 # Integration with other APIs
 
