@@ -9,14 +9,31 @@ import Video from "@/components/Video";
 import {CheckCircleFill}  from '@styled-icons/bootstrap/CheckCircleFill'
 import useFetchVideo from '@/utlis/hooks/useFetchVideo';
 import Sidebar from '@/components/Sidebar';
+import Commentss from '@/components/Comments';
 
 
 
 const VideoDetail = () => {
     const router = useRouter()
     const {id} = router.query
-
+    const [Comments, setComments] = useState([])
+    const YOUTUBE_COMMENTS_API =`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${id}&key=`+process.env.NEXT_PUBLIC_GOOGLE_API_KEY
     const {response,related, error, isLoading} = useFetchVideo(id)
+    
+
+
+    useEffect(() => {
+        const getComments =  async() => {
+            const res = await fetch(YOUTUBE_COMMENTS_API)
+            const data = await res.json()
+            setComments(data.items)
+            
+        }
+    
+
+        getComments()
+
+    }, [YOUTUBE_COMMENTS_API])
     
     
 
@@ -33,7 +50,7 @@ const VideoDetail = () => {
             <Container>
             <Sidebar />
             <Container2>
-            <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} width='100%' height='500px' className="Player" controls/>
+            <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} width='100%' height='400px' className="Player" controls/>
                 <VideoAbout>
                     <h1>{title}</h1>
                     <ChannelDetail>
@@ -43,11 +60,7 @@ const VideoDetail = () => {
                         <span>{likeCount} likes</span>
                     </ChannelDetail>
                 </VideoAbout>
-                <RelatedVideos>
-                    {related?.map((item) => {
-                        return <Video key={item.id} video={item}/>
-                    })}
-                </RelatedVideos>
+                <Commentss comments={Comments}/>
             </Container2>
         </Container>
             <Navbar/>
@@ -84,6 +97,8 @@ const VideoAbout = styled.div`
     flex-direction: column;
     padding: 0 20px;
     margin-top: 20px;
+    border-bottom: 1px solid #606060;
+    /* width:max-content; */
     h1{
         font-size: 24px;
         font-weight: 600;
@@ -97,18 +112,20 @@ const ChannelDetail = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    
+
     span{
         margin-right: 10px;
         font-size: 14px;
-        color: #606060;
+        color: white;
     }
 `
 
 const RelatedVideos = styled.div`
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     margin: auto;
-    justify-content: space-around;
+    justify-content: space-around; */
     
 
    

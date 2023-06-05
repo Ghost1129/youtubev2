@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Feed from '@/container/Feed'
 import {useEffect, useState} from "react";
+import useFetchPopular from '@/utlis/hooks/useFetchPopular'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -13,6 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
     const [videos, setVideos] = useState(null)
     const [query, setQuery] = useState('New')
+    const {response, error, loading } = useFetchPopular()
 
     // useEffect(() => {
     //   getVideos()
@@ -38,7 +40,7 @@ export default function Home() {
         <Navbar/>
         <Container>
         <Sidebar query={query} setQuery={setQuery} />
-        <Feed/>
+        <Feed videos={response} />
         </Container>
         
        

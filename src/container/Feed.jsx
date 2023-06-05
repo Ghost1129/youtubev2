@@ -1,13 +1,10 @@
 import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import  Video  from '../components/Video'
-// import {fetchMostPopularVideos} from '@/utlis/fetchapi'
-import useFetchPopular from '@/utlis/hooks/useFetchPopular'
 
 
-const Feed = () => {
+const Feed = ({videos}) => {
     
-    const {response, error, loading } = useFetchPopular()
     
     
 
@@ -15,7 +12,7 @@ const Feed = () => {
     <Container>
         {/* <Title>Recommended</Title> */}
         <VideoContainer>
-            {response?.map((item)=> {
+            {videos?.map((item)=> {
                 return <Video key={item.id} video={item}/>
             })
             }

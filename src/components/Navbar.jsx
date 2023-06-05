@@ -28,6 +28,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            if(search.length < 1) return
             if(searchCache[search]){
                 setSuggestions(searchCache[search])
             }
@@ -68,7 +69,7 @@ const Navbar = () => {
             
             <SearchInput onFocus={()=>setShowSuggestions(true)} onBlur={()=>setShowSuggestions(false)}  onChange={(e)=>setSearch(e.target.value)} value={search} placeholder='Search'/>
             <Searchlogo size="24"/>
-            {showSuggestions && suggestions && <SearchResult>
+            {showSuggestions  && <SearchResult>
                 <ul>
                     {suggestions?.map((suggestion,index) => (
                         <li key={index}>{suggestion}</li>
@@ -137,7 +138,7 @@ z-index: 1;
 ul{
     list-style: none;
     padding: 0;
-    margin: 10px 0;
+    /* margin: 10px 0; */
 
     li{
         padding: 10px;
