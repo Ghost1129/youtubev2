@@ -44,7 +44,7 @@ const Navbar = () => {
     const fetchSuggestions = async () => {
 
 
-        const URL = `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=`+search;
+        const URL = `https://corsproxy.io/?https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=`+search;
         const response = await fetch(URL);
         const data = await response.json();
         setSuggestions(data[1]);
